@@ -99,12 +99,14 @@ _FRAME_SIZE_MAP: dict = {
     2048: MIC_SAMPLE_NUM_2048,
 }
 
-# dtype string → (numpy dtype, bytes per sample)
+# dtype string → (numpy output dtype, bytes per PCM input sample)
+# The hardware always captures 16-bit PCM, so all entries share 2 bytes per
+# input sample regardless of the Python-side output dtype.
 _DTYPE_INFO: dict = {
-    "float32": (np.float32, 2),   # 16-bit PCM → float32
-    "float64": (np.float64, 2),   # 16-bit PCM → float64
-    "int16":   (np.int16,   2),   # raw 16-bit PCM
-    "int32":   (np.int32,   2),   # 16-bit PCM scaled to int32 range
+    "float32": (np.float32, 2),
+    "float64": (np.float64, 2),
+    "int16":   (np.int16,   2),
+    "int32":   (np.int32,   2),
 }
 
 
